@@ -12,15 +12,18 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.agusoft.inmobiliaria.modelo.Propietario;
 import com.agusoft.inmobiliaria.request.ApiClient;
+import com.agusoft.inmobiliaria.ui.OpcionesViewModel;
 
 public class PerfilViewModel extends AndroidViewModel {
 
     private MutableLiveData<Propietario> actualM;
     private MutableLiveData<Boolean> editarM;
     private MutableLiveData<Boolean> guardarM;
+    private OpcionesViewModel om;
     private Context context;
 
     public PerfilViewModel(@NonNull Application application) {

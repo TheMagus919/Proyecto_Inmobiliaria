@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean bool) {
                 if(bool){
+                    binding.edEmail.setText("");
+                    binding.edPassword.setText("");
                     binding.txErrorEmail.setVisibility(View.INVISIBLE);
                 }else{
                     binding.txErrorEmail.setVisibility(View.VISIBLE);

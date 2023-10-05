@@ -43,11 +43,9 @@ public class PerfilFragment extends Fragment {
         perfilViewModel.getEditarM().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                binding.edCodigoPro.setEnabled(true);
                 binding.edDniPro.setEnabled(true);
                 binding.edNombrePro.setEnabled(true);
                 binding.edApellidoPro.setEnabled(true);
-                binding.edEmailPro.setEnabled(true);
                 binding.edPasswordPro.setEnabled(true);
                 binding.edTelefonoPro.setEnabled(true);
                 binding.btEditar.setText("Guardar");
