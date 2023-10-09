@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private SensorManager sm;
     private Sensor s;
     private SensorEventListener evento;
+    private boolean as;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        sm.registerListener(evento,s,SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
     public void solicitarPermisos(){
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M
                 && (checkSelfPermission(ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) ||
@@ -87,7 +94,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        sm.unregisterListener(evento);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+        sm.unregisterListener(evento);
     }
 }
