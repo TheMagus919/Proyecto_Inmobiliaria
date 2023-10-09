@@ -67,7 +67,6 @@ public class PerfilFragment extends Fragment {
         binding.btEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("salida",binding.btEditar.getText()+"  text");
 
                 int id = Integer.parseInt(binding.edCodigoPro.getText().toString());
                 Long dni = Long.parseLong(binding.edDniPro.getText().toString());
@@ -78,8 +77,6 @@ public class PerfilFragment extends Fragment {
                 String telefono = binding.edTelefonoPro.getText().toString();
                 int avatar = ApiClient.getApi().obtenerUsuarioActual().getAvatar();
                 Propietario pro = new Propietario(id,dni,nombre,apellido,email,password,telefono,avatar);
-
-                Log.d("salida",pro.getNombre()+" - "+pro.getApellido()+" - "+pro.getEmail()+" - "+pro.getAvatar());
                 perfilViewModel.opcion(binding.btEditar.getText().toString(),pro);
             }
         });

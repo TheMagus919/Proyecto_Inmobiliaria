@@ -1,29 +1,24 @@
 package com.agusoft.inmobiliaria.ui.perfil;
 
 import android.app.Application;
-import android.app.SharedElementCallback;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.agusoft.inmobiliaria.modelo.Propietario;
 import com.agusoft.inmobiliaria.request.ApiClient;
-import com.agusoft.inmobiliaria.ui.OpcionesViewModel;
+import com.agusoft.inmobiliaria.OpcionesActivityViewModel;
 
 public class PerfilViewModel extends AndroidViewModel {
 
     private MutableLiveData<Propietario> actualM;
     private MutableLiveData<Boolean> editarM;
     private MutableLiveData<Boolean> guardarM;
-    private OpcionesViewModel om;
+    private OpcionesActivityViewModel om;
     private Context context;
 
     public PerfilViewModel(@NonNull Application application) {

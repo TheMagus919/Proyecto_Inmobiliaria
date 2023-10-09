@@ -35,10 +35,4 @@ public class DetallesInmueblesViewModel extends AndroidViewModel {
         Inmueble inmueble= (Inmueble) bundle.get("inmueble");
         inmuebleM.setValue(inmueble);
     }
-    public void guardarimg(String s){
-        SharedPreferences sp = context.getSharedPreferences("info.xml",0);
-        SharedPreferences.Editor editor= sp.edit();
-        editor.putString("img",s);
-        editor.commit();
-    }
 }

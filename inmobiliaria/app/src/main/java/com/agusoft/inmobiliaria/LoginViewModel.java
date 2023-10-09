@@ -3,7 +3,8 @@ package com.agusoft.inmobiliaria;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.hardware.SensorEvent;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,6 +15,7 @@ import com.agusoft.inmobiliaria.request.ApiClient;
 
 public class LoginViewModel extends AndroidViewModel {
     private Context context;
+    private int mov=0;
     private MutableLiveData<Boolean> resultado = new MutableLiveData<>();
     public LoginViewModel(@NonNull Application application) {
         super(application);
@@ -33,7 +35,7 @@ public class LoginViewModel extends AndroidViewModel {
         if(!usuario.isEmpty() && !contraseña.isEmpty()){
             Propietario pro = api.login(usuario,contraseña);
             if(pro !=null){
-                Intent intent = new Intent(context,opciones.class);
+                Intent intent = new Intent(context, OpcionesActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
                 autenticado = true;
@@ -43,4 +45,22 @@ public class LoginViewModel extends AndroidViewModel {
             resultado.setValue(autenticado);
         }
     }
+
+    public void getSensorLlamada(SensorEvent sensorEvent){
+        if(sensorEvent.values[0]<-6&& mov==0){
+            mov++;
+        }else{
+            if(sensorEvent.values[0]>6&&mov==1){
+                mov++;
+            }
+        }
+        if(mov==2){
+            mov=0;
+            Intent in = new Intent(Intent.ACTION_CALL);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.setData(Uri.parse("tel:2664553747"));
+            context.startActivity(in);
+        }
+    }
+
 }

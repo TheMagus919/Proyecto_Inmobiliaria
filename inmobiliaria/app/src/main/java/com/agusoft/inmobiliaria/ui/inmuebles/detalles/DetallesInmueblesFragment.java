@@ -31,6 +31,7 @@ public class DetallesInmueblesFragment extends Fragment {
     private DetallesInmueblesViewModel dm;
     private Context context;
     private FragmentDetallesInmueblesBinding binding;
+    private Inmueble inmuebleActual=null;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -50,26 +51,15 @@ public class DetallesInmueblesFragment extends Fragment {
                 binding.textTipoInmueble.setText(inmueble.getTipo());
                 Glide.with(DetallesInmueblesFragment.this).load(inmueble.getImagen()).into(binding.imgInmueble);
                 binding.cbDisponible.setChecked(inmueble.isEstado());
-                dm.guardarimg(inmueble.getImagen());
+                inmuebleActual = inmueble;
             }
         });
         binding.cbDisponible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int id = Integer.parseInt(binding.textCodigoInmueble.getText().toString());
-                String dire = binding.textDireInmueble.getText().toString();
-                String uso = binding.textUsoInmueble.getText().toString();
-                String tipo = binding.textTipoInmueble.getText().toString();
-                int ambiente = Integer.parseInt(binding.textAmbientesInmueble.getText().toString());
-                String pre = binding.textPrecioIn.getText().toString();
-                pre = pre.substring(1);
-                double precio = Double.parseDouble(pre);
                 boolean disp = binding.cbDisponible.isChecked();
-                SharedPreferences sp = getActivity().getSharedPreferences("info.xml",0);
-                String img= sp.getString("img","");
-                Propietario pro = ApiClient.getApi().obtenerUsuarioActual();
-                Inmueble in=new Inmueble(id,dire,uso,tipo,ambiente,precio,pro,disp,img);
-                dm.actualizarInmueble(in);
+                inmuebleActual.setEstado(disp);
+                dm.actualizarInmueble(inmuebleActual);
             }
         });
         dm.obtenerInformacionInmueble(bundle);
