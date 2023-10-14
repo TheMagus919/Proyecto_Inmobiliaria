@@ -47,14 +47,18 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public void getSensorLlamada(SensorEvent sensorEvent){
-        if(sensorEvent.values[0]<-6&& mov==0){
+        if(sensorEvent.values[0]<-4&& mov==0){
             mov++;
         }else{
-            if(sensorEvent.values[0]>6&&mov==1){
+            if(sensorEvent.values[0]>4&&mov==1){
                 mov++;
+            }else{
+                if(sensorEvent.values[0]<-4&&mov==2){
+                    mov++;
+                }
             }
         }
-        if(mov==2){
+        if(mov==3){
             mov=0;
             Intent in = new Intent(Intent.ACTION_CALL);
             in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
